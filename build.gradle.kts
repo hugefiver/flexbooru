@@ -17,7 +17,7 @@ plugins {
     id("com.github.ben-manes.versions") version("0.39.0")
 }
 
-buildscript {
+@Suppress("AndroidGradlePluginVersion") buildscript {
     extra.apply {
         set("nav_version", "2.4.0-beta01")
         set("room_version", "2.4.0-beta01")
@@ -37,10 +37,10 @@ buildscript {
         google()
     }
     dependencies {
-        val kotlinVersion = "1.5.31"
+        val kotlinVersion = "1.6.0"
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath(kotlin("serialization", kotlinVersion))
-        classpath("com.android.tools.build:gradle:7.1.0-beta02")
+        classpath("com.android.tools.build:gradle:7.1.0-alpha11")
         classpath("com.google.android.gms:oss-licenses-plugin:0.10.4")
         classpath("com.google.gms:google-services:4.3.10")
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.8.0")

@@ -156,10 +156,10 @@ class PoolFragment : SearchBarFragment() {
         AlertDialog.Builder(activity)
             .setTitle("Pool $poolId")
             .setItems(activity.resources.getStringArray(R.array.pool_item_action)) { _, which ->
-                if (!isOrderSuccess) {
-                    startActivity(Intent(activity, PurchaseActivity::class.java))
-                    return@setItems
-                }
+//                if (!isOrderSuccess) {
+//                    startActivity(Intent(activity, PurchaseActivity::class.java))
+//                    return@setItems
+//                }
                 if (booru.user == null) {
                     startActivity(Intent(activity, AccountConfigActivity::class.java))
                     return@setItems

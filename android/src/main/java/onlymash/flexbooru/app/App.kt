@@ -58,9 +58,15 @@ class App : Application(), DIAware {
             GlideApp.with(imageView.context)
                 .load(uri)
                 .centerCrop()
-                .placeholder(ContextCompat.getDrawable(imageView.context, R.drawable.avatar_account))
+                .placeholder(
+                    ContextCompat.getDrawable(
+                        imageView.context,
+                        R.drawable.avatar_account
+                    )
+                )
                 .into(imageView)
         }
+
         override fun cancel(imageView: ImageView) {
             Glide.with(imageView.context).clear(imageView)
         }
@@ -75,19 +81,21 @@ class App : Application(), DIAware {
     private fun initial() {
         AppCompatDelegate.setDefaultNightMode(nightMode)
         DrawerImageLoader.init(drawerImageLoader)
-        if (!Settings.isOrderSuccess) {
-            MobileAds.initialize(this) {}
-            MobileAds.setRequestConfiguration(RequestConfiguration.Builder()
-                .setTestDeviceIds(listOf("65DC68D21E774E5B6CAF511768A3E2D2")).build())
-        }
-        if (BuildConfig.DEBUG) {
-            return
-        }
+//        if (!Settings.isOrderSuccess) {
+//            MobileAds.initialize(this) {}
+//            MobileAds.setRequestConfiguration(
+//                RequestConfiguration.Builder()
+//                    .setTestDeviceIds(listOf("65DC68D21E774E5B6CAF511768A3E2D2")).build()
+//            )
+//        }
+//        if (BuildConfig.DEBUG) {
+//            return
+//        }
         checkOrder()
     }
 
     private fun checkOrder() {
-        val isPlayVersion = getSignMd5() == "777296a0fe4baa88c783d1cb18bdf1f2"
+        /*val isPlayVersion = getSignMd5() == "777296a0fe4baa88c783d1cb18bdf1f2"
         isGoogleSign = isPlayVersion
         if (isPlayVersion) {
             checkOrderFromCache()
@@ -100,14 +108,15 @@ class App : Application(), DIAware {
             } else {
                 isOrderSuccess = false
             }
-        }
+        }*/
+        isOrderSuccess = true
     }
 
     private fun checkOrderFromCache() {
         val billingClient = BillingClient
             .newBuilder(this)
             .enablePendingPurchases()
-            .setListener { _, _ ->  }
+            .setListener { _, _ -> }
             .build()
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
@@ -125,7 +134,7 @@ class App : Application(), DIAware {
                                     val ackParams = AcknowledgePurchaseParams.newBuilder()
                                         .setPurchaseToken(purchase.purchaseToken)
                                         .build()
-                                    billingClient.acknowledgePurchase(ackParams){}
+                                    billingClient.acknowledgePurchase(ackParams) {}
                                 }
                                 true
                             } else false
@@ -134,6 +143,7 @@ class App : Application(), DIAware {
                     billingClient.endConnection()
                 }
             }
+
             override fun onBillingServiceDisconnected() {
                 billingClient.endConnection()
             }

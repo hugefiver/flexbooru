@@ -207,18 +207,18 @@ class MainActivity : PathActivity(), SharedPreferences.OnSharedPreferenceChangeL
                 setupNavigationMenu(BOORU_TYPE_UNKNOWN)
         }
         booruViewModel.loadBooru(activatedBooruUid)
-        if (!isOrderSuccess) {
-            drawerSliderView.addItemAtPosition(
-                DRAWER_ITEM_ID_PURCHASE_POSITION,
-                PrimaryDrawerItem().apply {
-                    name = StringHolder(R.string.purchase_title)
-                    icon = createImageHolder(R.drawable.ic_payment_24dp)
-                    isSelectable = false
-                    isIconTinted = true
-                    identifier = DRAWER_ITEM_ID_PURCHASE
-                }
-            )
-        }
+//        if (!isOrderSuccess) {
+//            drawerSliderView.addItemAtPosition(
+//                DRAWER_ITEM_ID_PURCHASE_POSITION,
+//                PrimaryDrawerItem().apply {
+//                    name = StringHolder(R.string.purchase_title)
+//                    icon = createImageHolder(R.drawable.ic_payment_24dp)
+//                    isSelectable = false
+//                    isIconTinted = true
+//                    identifier = DRAWER_ITEM_ID_PURCHASE
+//                }
+//            )
+//        }
         setupInsets { insets ->
             val bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
             drawerSliderView.recyclerView.updatePadding(bottom = bottom)
@@ -388,15 +388,15 @@ class MainActivity : PathActivity(), SharedPreferences.OnSharedPreferenceChangeL
     }
 
     private fun initDrawerHeader() {
-        val success = isOrderSuccess
+//        val success = isOrderSuccess
         val size = boorus.size
         var uid = activatedBooruUid
         var i = -1
         headerView.clear()
         boorus.forEachIndexed { index, booru ->
-            if (!success && index >= BOORUS_LIMIT) {
-                return@forEachIndexed
-            }
+//            if (!success && index >= BOORUS_LIMIT) {
+//                return@forEachIndexed
+//            }
             if (i == -1 && booru.uid == uid) {
                 i = index
             }
@@ -418,7 +418,8 @@ class MainActivity : PathActivity(), SharedPreferences.OnSharedPreferenceChangeL
         }
         headerView.addProfile(
             profileSettingDrawerItem,
-            if (success || size < BOORUS_LIMIT) size else BOORUS_LIMIT
+//            if (success || size < BOORUS_LIMIT) size else BOORUS_LIMIT
+            size
         )
         if (size == 0) {
             activatedBooruUid = -1
@@ -452,22 +453,22 @@ class MainActivity : PathActivity(), SharedPreferences.OnSharedPreferenceChangeL
                 booruViewModel.loadBooru(uid)
             }
             ORDER_SUCCESS_KEY -> {
-                if (isOrderSuccess) {
-                    drawerSliderView.removeItems(DRAWER_ITEM_ID_PURCHASE)
-                } else {
-                    if (drawerSliderView.getDrawerItem(DRAWER_ITEM_ID_PURCHASE) == null) {
-                        drawerSliderView.addItemAtPosition(
-                            DRAWER_ITEM_ID_PURCHASE_POSITION,
-                            PrimaryDrawerItem().apply {
-                                name = StringHolder(R.string.purchase_title)
-                                icon = createImageHolder(R.drawable.ic_payment_24dp)
-                                isSelectable = false
-                                isIconTinted = true
-                                identifier = DRAWER_ITEM_ID_PURCHASE
-                            }
-                        )
-                    }
-                }
+//                if (isOrderSuccess) {
+                drawerSliderView.removeItems(DRAWER_ITEM_ID_PURCHASE)
+//                } else {
+//                    if (drawerSliderView.getDrawerItem(DRAWER_ITEM_ID_PURCHASE) == null) {
+//                        drawerSliderView.addItemAtPosition(
+//                            DRAWER_ITEM_ID_PURCHASE_POSITION,
+//                            PrimaryDrawerItem().apply {
+//                                name = StringHolder(R.string.purchase_title)
+//                                icon = createImageHolder(R.drawable.ic_payment_24dp)
+//                                isSelectable = false
+//                                isIconTinted = true
+//                                identifier = DRAWER_ITEM_ID_PURCHASE
+//                            }
+//                        )
+//                    }
+//                }
                 if (boorus.size > BOORUS_LIMIT) {
                     initDrawerHeader()
                 }

@@ -51,34 +51,34 @@ class PurchaseActivity : BaseActivity(), PurchasesUpdatedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setTitle(R.string.purchase_title)
-        }
-        if (Settings.isGoogleSign) {
-            binding.payAlipay.visibility = View.GONE
-            binding.payRedeemCode.visibility = View.GONE
-            billingClient = BillingClient
-                .newBuilder(this)
-                .enablePendingPurchases()
-                .setListener(this)
-                .build()
-            billingClient?.startConnection(object : BillingClientStateListener {
-                override fun onBillingSetupFinished(billingResult: BillingResult) { }
-                override fun onBillingServiceDisconnected() { }
-            })
-            binding.payGooglePlay.setOnClickListener {
-                orderByGooglePlay()
-            }
-        } else {
-            binding.payGooglePlay.visibility = View.GONE
-            binding.payAlipay.setOnClickListener {
-                orderByAlipay()
-            }
-            binding.payRedeemCode.setOnClickListener {
-                submitRedeemCode()
-            }
-        }
+//        supportActionBar?.apply {
+//            setDisplayHomeAsUpEnabled(true)
+//            setTitle(R.string.purchase_title)
+//        }
+//        if (Settings.isGoogleSign) {
+//            binding.payAlipay.visibility = View.GONE
+//            binding.payRedeemCode.visibility = View.GONE
+//            billingClient = BillingClient
+//                .newBuilder(this)
+//                .enablePendingPurchases()
+//                .setListener(this)
+//                .build()
+//            billingClient?.startConnection(object : BillingClientStateListener {
+//                override fun onBillingSetupFinished(billingResult: BillingResult) { }
+//                override fun onBillingServiceDisconnected() { }
+//            })
+//            binding.payGooglePlay.setOnClickListener {
+//                orderByGooglePlay()
+//            }
+//        } else {
+//            binding.payGooglePlay.visibility = View.GONE
+//            binding.payAlipay.setOnClickListener {
+//                orderByAlipay()
+//            }
+//            binding.payRedeemCode.setOnClickListener {
+//                submitRedeemCode()
+//            }
+//        }
     }
 
     override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {

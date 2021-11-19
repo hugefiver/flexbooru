@@ -140,22 +140,22 @@ class BooruActivity : KodeinActivity() {
         if (intent != null) {
             handleShareIntent(intent)
         }
-        if (!Settings.isOrderSuccess) {
-            val adView = AdView(this)
-            binding.container.addView(adView, 0, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                gravity = Gravity.CENTER_HORIZONTAL
-            })
-            var adWidth = getScreenWidthDp()
-            if (adWidth > 500) {
-                adWidth = 500
-            }
-            adView.apply {
-                visibility = View.VISIBLE
-                adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this@BooruActivity, adWidth)
-                adUnitId = "ca-app-pub-1547571472841615/5647147698"
-                loadAd(AdRequest.Builder().build())
-            }
-        }
+//        if (!Settings.isOrderSuccess) {
+//            val adView = AdView(this)
+//            binding.container.addView(adView, 0, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+//                gravity = Gravity.CENTER_HORIZONTAL
+//            })
+//            var adWidth = getScreenWidthDp()
+//            if (adWidth > 500) {
+//                adWidth = 500
+//            }
+//            adView.apply {
+//                visibility = View.VISIBLE
+//                adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this@BooruActivity, adWidth)
+//                adUnitId = "ca-app-pub-1547571472841615/5647147698"
+//                loadAd(AdRequest.Builder().build())
+//            }
+//        }
     }
 
     private fun createDefaultBooru(): Long {
@@ -228,18 +228,18 @@ class BooruActivity : KodeinActivity() {
     }
 
     private fun backupToFile() {
-        if (!isOrderSuccess) {
-            startActivity(Intent(this, PurchaseActivity::class.java))
-            return
-        }
+//        if (!isOrderSuccess) {
+//            startActivity(Intent(this, PurchaseActivity::class.java))
+//            return
+//        }
         createFileObserver.createDocument("boorus.json")
     }
 
     private fun restoreFromFile() {
-        if (!isOrderSuccess) {
-            startActivity(Intent(this, PurchaseActivity::class.java))
-            return
-        }
+//        if (!isOrderSuccess) {
+//            startActivity(Intent(this, PurchaseActivity::class.java))
+//            return
+//        }
         val mimeType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) "application/json" else "application/octet-stream"
         openFileObserver.openDocument(mimeType)
     }

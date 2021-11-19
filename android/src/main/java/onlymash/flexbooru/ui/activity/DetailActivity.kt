@@ -333,22 +333,22 @@ class DetailActivity : PathActivity(),
         favButton.setOnClickListener {
             vote()
         }
-        if (!Settings.isOrderSuccess) {
-            val adView = AdView(this)
-            binding.bottomShortcut.bottomBarContainer.addView(adView, 0, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-                gravity = Gravity.CENTER_HORIZONTAL
-            })
-            var adWidth = getScreenWidthDp()
-            if (adWidth > 500) {
-                adWidth = 500
-            }
-            adView.apply {
-                visibility = View.VISIBLE
-                adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this@DetailActivity, adWidth)
-                adUnitId = "ca-app-pub-1547571472841615/1729907816"
-                loadAd(AdRequest.Builder().build())
-            }
-        }
+//        if (!Settings.isOrderSuccess) {
+//            val adView = AdView(this)
+//            binding.bottomShortcut.bottomBarContainer.addView(adView, 0, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+//                gravity = Gravity.CENTER_HORIZONTAL
+//            })
+//            var adWidth = getScreenWidthDp()
+//            if (adWidth > 500) {
+//                adWidth = 500
+//            }
+//            adView.apply {
+//                visibility = View.VISIBLE
+//                adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this@DetailActivity, adWidth)
+//                adUnitId = "ca-app-pub-1547571472841615/1729907816"
+//                loadAd(AdRequest.Builder().build())
+//            }
+//        }
     }
 
     private fun createInfoDialog() {
