@@ -20,7 +20,6 @@ import android.net.Uri
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.PlayerView
@@ -54,7 +53,7 @@ class PlayerHolder {
     }
     private var currentPlayerState: PlayerState? = null
     private val playerStates: MutableList<PlayerState> = mutableListOf()
-    private var player: SimpleExoPlayer? = null
+    private var player: ExoPlayer? = null
 
     private fun createExtractorMediaSource(context: Context, uri: Uri): MediaSource {
         val sourceFactory = DefaultDataSourceFactory(context, PC_USER_AGENT)
@@ -95,7 +94,7 @@ class PlayerHolder {
             if (playWhenReady) {
                 currentPlayerState?.apply {
                     position = currentPosition
-                    window = currentWindowIndex
+                    window = currentMediaItemIndex
                     whenReady = playWhenReady
                 }
                 playWhenReady = false
@@ -104,8 +103,8 @@ class PlayerHolder {
         }
     }
 
-    fun create(context: Context): SimpleExoPlayer {
-        val player = SimpleExoPlayer.Builder(context).build().apply {
+    fun create(context: Context): ExoPlayer {
+        val player = ExoPlayer.Builder(context).build().apply {
                 playWhenReady = true
                 repeatMode = Player.REPEAT_MODE_ALL
             }

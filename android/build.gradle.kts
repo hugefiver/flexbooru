@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.konan.properties.Properties
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+//    id("com.google.firebase.crashlytics")
     id("com.google.android.gms.oss-licenses-plugin")
     kotlin("android")
     kotlin("plugin.serialization")
@@ -92,11 +92,11 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = freeCompilerArgs + listOf(
             "-Xopt-in=kotlin.ExperimentalStdlibApi",
             "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
@@ -128,17 +128,17 @@ android {
 
 dependencies {
     val ext = rootProject.extra
-    val kodeinVersion = ext.get("kodein_version") as String
-    val coroutinesVersion = ext.get("coroutines_version") as String
-    val serializationVersion = ext.get("serialization_version") as String
-    val navVersion = ext.get("nav_version") as String
-    val roomVersion = ext.get("room_version") as String
-    val workVersion = ext.get("work_version") as String
-    val glideVersion = ext.get("glide_version") as String
-    val lifecycleVersion = ext.get("lifecycle_version") as String
-    val exoplayerVersion = ext.get("exoplayer_version") as String
-    val okhttpVersion = ext.get("okhttp_version") as String
-    val retrofitVersion = ext.get("retrofit_version") as String
+    val kodeinVersion = "7.9.0"
+    val coroutinesVersion = "1.5.2-native-mt"
+    val serializationVersion = "1.3.1"
+    val navVersion = "2.3.5"
+    val roomVersion = "2.3.0"
+    val workVersion = "2.7.1"
+    val glideVersion = "4.12.0"
+    val lifecycleVersion = "2.4.0"
+    val exoplayerVersion = "2.16.0"
+    val okhttpVersion = "5.0.0-alpha.2"
+    val retrofitVersion = "2.9.0"
     val xmlutilVersion = ext.get("xmlutil_version") as String
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
@@ -147,7 +147,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
     implementation("org.kodein.di:kodein-di-framework-android-core:$kodeinVersion")
     implementation("org.kodein.di:kodein-di-framework-android-x:$kodeinVersion")
@@ -167,10 +167,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$navVersion")
-    implementation("androidx.room:room-runtime:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-paging:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-runtime:2.4.0-beta02")
+    implementation("androidx.room:room-ktx:2.4.0-beta02")
+    implementation("androidx.room:room-paging:2.4.0-beta02")
+    kapt("androidx.room:room-compiler:2.4.0-beta02")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
@@ -197,7 +197,7 @@ dependencies {
     implementation("com.google.zxing:core:3.4.1")
     implementation("xyz.belvi.mobilevision:barcodescanner:2.0.3")
     implementation("com.google.firebase:firebase-analytics-ktx:20.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.4")
+//    implementation("com.google.firebase:firebase-crashlytics:18.2.4")
     implementation("com.google.android.gms:play-services-ads:20.4.0")
     implementation("com.google.android.gms:play-services-vision:20.1.3")
     implementation("com.google.android.gms:play-services-oss-licenses:17.0.0")
@@ -209,13 +209,13 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:$okhttpVersion")
     implementation("com.squareup.okio:okio:3.0.0")
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.github.bumptech.glide:okhttp3-integration:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
     implementation("com.google.android.exoplayer:exoplayer-core:$exoplayerVersion")
     implementation("com.google.android.exoplayer:exoplayer-ui:$exoplayerVersion")
-    implementation("io.github.pdvrieze.xmlutil:core-android:$xmlutilVersion")
-    implementation("io.github.pdvrieze.xmlutil:serialization-android:$xmlutilVersion")
+    implementation("io.github.pdvrieze.xmlutil:core-android:0.84.0-RC1")
+    implementation("io.github.pdvrieze.xmlutil:serialization-android:0.84.0-RC1")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.robolectric:robolectric:4.7")
     androidTestImplementation("androidx.work:work-testing:$workVersion")

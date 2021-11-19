@@ -18,6 +18,7 @@ package onlymash.flexbooru.data.api
 import android.util.Log
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
+import nl.adaptivity.xmlutil.ExperimentalXmlUtilApi
 import nl.adaptivity.xmlutil.serialization.XML
 import nl.adaptivity.xmlutil.serialization.XmlConfig
 import okhttp3.MediaType.Companion.toMediaType
@@ -55,6 +56,7 @@ fun createHttpClient(isSankaku: Boolean): OkHttpClient {
     return builder.build()
 }
 
+@ExperimentalXmlUtilApi
 inline fun <reified T> createApi(): T {
     val classJava = T::class.java
     val baseUrl = when (classJava) {
