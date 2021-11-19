@@ -28,7 +28,7 @@ plugins {
     kotlin("kapt")
 }
 
-val releaseStoreFile = file("../.gradle/flexbooru_play.jks")
+val releaseStoreFile = file("../.gradle/key.jks")
 val storePropertyFile = file("../.gradle/keystore.properties")
 
 val properties = Properties()

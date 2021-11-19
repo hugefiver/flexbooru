@@ -1,5 +1,10 @@
 *.iml
+
+# save sign key
+!/.gradle/key.jks
+!/.gradle/keystore.properties
 .gradle
+
 /local.properties
 .idea
 .DS_Store
