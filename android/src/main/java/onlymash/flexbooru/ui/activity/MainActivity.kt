@@ -224,7 +224,7 @@ class MainActivity : PathActivity(), SharedPreferences.OnSharedPreferenceChangeL
             drawerSliderView.recyclerView.updatePadding(bottom = bottom)
             drawerSliderView.stickyFooterView?.updatePadding(bottom = bottom)
         }
-        checkUpdate()
+        //checkUpdate()
     }
 
     private fun setupNavigationMenu(booruType: Int) {
